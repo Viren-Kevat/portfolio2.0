@@ -1,0 +1,88 @@
+// ─── COLOR TOKENS ───────────────────────────────────────
+$bg-primary: #080808;
+$bg-secondary: #0f0f0f;
+$bg-card: #111111;
+
+$accent: #7B2FBE;
+$accent-bright: #A855F7;
+$accent-glow: rgba(123, 47, 190, 0.35);
+
+$white: #FFFFFF;
+$text-primary: #F2F2F2;
+$text-secondary: #888888;
+$text-muted: #444444;
+
+$border: rgba(255, 255, 255, 0.06);
+$border-accent: rgba(168, 85, 247, 0.3);
+
+// ─── GLASS ──────────────────────────────────────────────
+$glass-bg: rgba(255, 255, 255, 0.03);
+$glass-border: rgba(255, 255, 255, 0.08);
+$glass-blur: 16px;
+
+// ─── GRADIENTS ──────────────────────────────────────────
+$gradient-accent: linear-gradient(135deg, #7B2FBE, #A855F7);
+$gradient-dark: linear-gradient(180deg, #080808 0%, #0f0f0f 100%);
+$gradient-glow: radial-gradient(ellipse at top, rgba(123, 47, 190, 0.15), transparent 70%);
+$gradient-card: linear-gradient(135deg, rgba(123, 47, 190, 0.08), rgba(168, 85, 247, 0.03));
+
+// ─── TYPOGRAPHY ─────────────────────────────────────────
+$font-display: 'Bebas Neue', sans-serif;
+$font-body: 'DM Sans', sans-serif;
+$font-mono: 'JetBrains Mono', monospace;
+
+// ─── FONT SCALE ─────────────────────────────────────────
+$text-xs: 0.75rem;
+$text-sm: 0.875rem;
+$text-base: 1rem;
+$text-lg: 1.25rem;
+$text-xl: 1.5rem;
+$text-2xl: 2rem;
+$text-3xl: 3rem;
+$text-4xl: 4.5rem;
+$text-5xl: 7rem;
+$text-hero: clamp(4.5rem, 13vw, 7rem);
+
+// ─── SPACING ────────────────────────────────────────────
+$space-xs: 0.5rem;
+$space-sm: 1rem;
+$space-md: 1.5rem;
+$space-lg: 2.5rem;
+$space-xl: 4rem;
+$space-2xl: 7rem;
+
+// ─── LAYOUT ─────────────────────────────────────────────
+$container-max: 1200px;
+
+// ─── RADIUS ─────────────────────────────────────────────
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 20px;
+$radius-full: 9999px;
+
+// ─── Z-INDEX ────────────────────────────────────────────
+$z-base: 1;
+$z-card: 10;
+$z-navbar: 100;
+$z-modal: 200;
+$z-overlay: 300;
+
+// ─── TRANSITIONS ────────────────────────────────────────
+$transition-fast: 0.2s ease;
+$transition-base: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── HOVER ──────────────────────────────────────────────
+$hover-scale: 1.03;
+
+// ─── SHADOWS ────────────────────────────────────────────
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+$shadow-md: 0 8px 32px rgba(0, 0, 0, 0.6);
+$shadow-glow: 0 0 40px $accent-glow;
+$shadow-card: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+// ─── BREAKPOINTS ────────────────────────────────────────
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;

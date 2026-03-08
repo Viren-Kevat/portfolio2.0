@@ -1,0 +1,390 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+// ─── SECTION ────────────────────────────────────────────
+.blog {
+    position: relative;
+    background: $bg-primary;
+    @include section;
+    overflow: hidden;
+}
+
+// ─── BACKGROUND ORBS ────────────────────────────────────
+.bgOrb1 {
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(123, 47, 190, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bgOrb2 {
+    position: absolute;
+    bottom: 5%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+// ─── HEADING WRAP ───────────────────────────────────────
+.headingWrap {
+    @include container;
+    position: relative;
+    z-index: $z-base;
+    margin-bottom: $space-2xl;
+}
+
+.label {
+    font-family: $font-mono;
+    font-size: $text-sm;
+    letter-spacing: 0.2em;
+    color: $accent-bright;
+    display: block;
+    margin-bottom: $space-md;
+}
+
+// ─── HEADING ROW ────────────────────────────────────────
+// heading on left, meta description on right
+.headingRow {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: $space-xl;
+    margin-bottom: $space-xl;
+
+    @include md {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $space-md;
+    }
+}
+
+.heading {
+    font-family: $font-display;
+    font-size: clamp(#{$text-4xl}, 8vw, #{$text-hero});
+    line-height: 0.9;
+    color: $text-primary;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+}
+
+.headingAccent {
+    @include gradient-text;
+}
+
+.headingMeta {
+    max-width: 320px;
+    padding-bottom: $space-xs;
+
+    @include md {
+        max-width: 100%;
+    }
+}
+
+.headingDesc {
+    font-family: $font-body;
+    font-size: $text-base;
+    color: $text-secondary;
+    line-height: 1.7;
+    margin-bottom: $space-sm;
+    font-weight: 300;
+}
+
+.postCount {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $text-muted;
+    letter-spacing: 0.2em;
+}
+
+// ─── FILTER PILLS ───────────────────────────────────────
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-xs;
+}
+
+// each category button — position relative for the sliding pill
+.filterBtn {
+    position: relative;
+    font-family: $font-mono;
+    font-size: $text-xs;
+    letter-spacing: 0.1em;
+    color: $text-muted;
+    background: transparent;
+    border: 1px solid $border;
+    border-radius: $radius-full;
+    padding: 0.4rem 1.1rem;
+    cursor: none;
+    transition: color $transition-fast, border-color $transition-fast;
+    overflow: hidden;
+
+    &:hover {
+        color: $text-secondary;
+        border-color: $border-accent;
+    }
+}
+
+.filterActive {
+    color: $white;
+    border-color: $accent;
+}
+
+// the sliding animated background — driven by framer-motion layoutId
+.filterPill {
+    position: absolute;
+    inset: 0;
+    background: $gradient-accent;
+    border-radius: $radius-full;
+    z-index: 0;
+}
+
+.filterLabel {
+    position: relative;
+    z-index: 1; // above the pill
+}
+
+// ─── CARD GRID ──────────────────────────────────────────
+// auto-fill columns — minimum 320px, max 1fr
+// this is responsive without any media queries
+.grid {
+    @include container;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: $space-lg;
+    position: relative;
+    z-index: $z-base;
+
+    @include md {
+        grid-template-columns: 1fr;
+    }
+}
+
+// ─── BLOG CARD ──────────────────────────────────────────
+.card {
+    position: relative;
+    @include glass;
+    border-radius: $radius-lg;
+    padding: $space-xl;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+    overflow: hidden;
+    transition: $transition-base;
+    cursor: none;
+
+    &:hover {
+        border-color: $border-accent;
+        transform: translateY(-6px);
+        box-shadow: $shadow-card, $shadow-glow;
+
+        .cardGlow {
+            opacity: 1;
+        }
+
+        .arrowWrap {
+            color: $accent-bright;
+        }
+    }
+}
+
+// featured card — slightly different accent
+.cardFeatured {
+    border-color: rgba(123, 47, 190, 0.3);
+    background: linear-gradient(135deg, rgba(123, 47, 190, 0.06) 0%, $bg-card 60%);
+}
+
+// hover glow — invisible by default, fades in on hover
+.cardGlow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(168, 85, 247, 0.08), transparent 60%);
+    pointer-events: none;
+    opacity: 0;
+    transition: $transition-slow;
+    z-index: 0;
+}
+
+// ─── FEATURED BADGE ─────────────────────────────────────
+.featuredBadge {
+    position: absolute;
+    top: $space-md;
+    right: $space-md;
+    font-family: $font-mono;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: $accent-bright;
+    background: rgba(168, 85, 247, 0.12);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: $radius-full;
+    padding: 0.2rem 0.6rem;
+    z-index: $z-base;
+}
+
+// ─── CARD TOP ROW ───────────────────────────────────────
+.cardTop {
+    @include flex-between;
+    position: relative;
+    z-index: $z-base;
+}
+
+.category {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $accent-bright;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.arrowWrap {
+    color: $text-muted;
+    transition: color $transition-fast;
+    flex-shrink: 0;
+}
+
+// ─── GHOST POST NUMBER ──────────────────────────────────
+.postNum {
+    position: absolute;
+    bottom: $space-md;
+    right: $space-lg;
+    font-family: $font-display;
+    font-size: clamp(4rem, 6vw, 7rem);
+    color: rgba(255, 255, 255, 0.03);
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+    transition: $transition-base;
+    user-select: none;
+
+    .card:hover & {
+        color: rgba(168, 85, 247, 0.06);
+    }
+}
+
+// ─── CARD BODY ──────────────────────────────────────────
+.cardBody {
+    position: relative;
+    z-index: $z-base;
+    flex: 1;
+}
+
+.title {
+    font-family: $font-display;
+    font-size: clamp(#{$text-xl}, 2.2vw, #{$text-2xl});
+    color: $text-primary;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    margin-bottom: $space-sm;
+    transition: color $transition-fast;
+
+    .card:hover & {
+        color: $white;
+    }
+}
+
+.excerpt {
+    font-family: $font-body;
+    font-size: $text-sm;
+    color: $text-secondary;
+    line-height: 1.75;
+    font-weight: 300;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; // truncate to 3 lines with ellipsis
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+// ─── TAGS ───────────────────────────────────────────────
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    position: relative;
+    z-index: $z-base;
+}
+
+.tag {
+    font-family: $font-mono;
+    font-size: 10px;
+    color: $text-muted;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid $border;
+    border-radius: $radius-full;
+    padding: 0.2rem 0.6rem;
+    letter-spacing: 0.05em;
+    transition: $transition-fast;
+
+    .card:hover & {
+        border-color: rgba(168, 85, 247, 0.2);
+        color: $text-secondary;
+    }
+}
+
+// ─── CARD META ──────────────────────────────────────────
+.cardMeta {
+    @include flex-between;
+    position: relative;
+    z-index: $z-base;
+    padding-top: $space-sm;
+    border-top: 1px solid $border;
+}
+
+.date {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $text-muted;
+    letter-spacing: 0.08em;
+}
+
+.readTime {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $text-muted;
+    letter-spacing: 0.08em;
+}
+
+// ─── BOTTOM CTA ─────────────────────────────────────────
+.bottomCta {
+    @include container;
+    margin-top: $space-2xl;
+    padding-top: $space-xl;
+    border-top: 1px solid $border;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: $z-base;
+
+    @include md {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $space-sm;
+    }
+}
+
+.ctaLabel {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $accent-bright;
+    letter-spacing: 0.2em;
+}
+
+.ctaText {
+    font-family: $font-body;
+    font-size: $text-sm;
+    color: $text-muted;
+    font-weight: 300;
+}

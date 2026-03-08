@@ -1,0 +1,247 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+// ─── SECTION ────────────────────────────────────────────
+.hero {
+    position: relative;
+    min-height: 100vh;
+    @include flex-center;
+    flex-direction: column;
+    overflow: hidden;
+    background: $bg-primary;
+}
+
+// ─── BACKGROUND EFFECTS ─────────────────────────────────
+.bgGlow {
+    position: absolute;
+    inset: 0;
+    background: $gradient-glow;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bgGrid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.03;
+    background-image:
+        linear-gradient($border 1px, transparent 1px),
+        linear-gradient(90deg, $border 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+
+.bgOrb1 {
+    position: absolute;
+    top: -200px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(123, 47, 190, 0.12), transparent 70%);
+    border-radius: $radius-full;
+    pointer-events: none;
+    z-index: 0;
+    animation: float 8s ease-in-out infinite;
+}
+
+.bgOrb2 {
+    position: absolute;
+    bottom: -150px;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.08), transparent 70%);
+    border-radius: $radius-full;
+    pointer-events: none;
+    z-index: 0;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+
+    50% {
+        transform: translateY(-30px) scale(1.05);
+    }
+}
+
+// ─── CONTENT ────────────────────────────────────────────
+.content {
+    position: relative;
+    z-index: $z-base;
+    @include container;
+    text-align: center;
+    padding-top: $space-xl;
+    padding-bottom: $space-xl;
+}
+
+// ─── LABEL ──────────────────────────────────────────────
+.label {
+    font-family: $font-mono;
+    font-size: $text-sm;
+    letter-spacing: 0.2em;
+    color: $accent-bright;
+    display: inline-block;
+    margin-bottom: $space-md;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 24px;
+        height: 2px;
+        background: $accent-bright;
+        vertical-align: middle;
+        margin-right: $space-xs;
+    }
+}
+
+// ─── HEADING ────────────────────────────────────────────
+.headingWrap {
+    margin-bottom: $space-md;
+}
+
+.heading {
+    font-family: $font-display;
+    font-size: $text-hero;
+    line-height: 0.92;
+    letter-spacing: 0.04em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1em;
+}
+
+.headingLine {
+    color: $text-primary;
+    display: block;
+}
+
+.headingAccent {
+    @include gradient-text;
+    display: block;
+    font-size: calc(#{$text-hero} * 1.15);
+}
+
+// ─── ROLE / TYPEWRITER ──────────────────────────────────
+.roleWrap {
+    font-family: $font-body;
+    font-size: $text-xl;
+    margin-bottom: $space-lg;
+    min-height: 2rem;
+
+    @include md {
+        font-size: $text-lg;
+    }
+}
+
+.rolePrefix {
+    color: $text-secondary;
+}
+
+.role {
+    color: $accent-bright;
+    font-weight: 600;
+}
+
+.cursor {
+    display: inline-block;
+    color: $accent-bright;
+    animation: blink 0.8s step-end infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+// ─── BIO ────────────────────────────────────────────────
+.bio {
+    font-family: $font-body;
+    font-size: $text-lg;
+    color: $text-secondary;
+    font-weight: 300;
+    max-width: 540px;
+    margin: 0 auto $space-lg;
+    line-height: 1.8;
+
+    @include md {
+        font-size: $text-base;
+    }
+}
+
+// ─── CTA BUTTONS ────────────────────────────────────────
+.ctas {
+    display: flex;
+    gap: $space-sm;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: $space-lg;
+}
+
+.btnPrimary {
+    @include btn-primary;
+    font-size: $text-base;
+    padding: 0.75rem 2rem;
+}
+
+.btnOutline {
+    @include btn-outline;
+    font-size: $text-base;
+    padding: 0.75rem 2rem;
+}
+
+// ─── SOCIALS ────────────────────────────────────────────
+.socials {
+    display: flex;
+    gap: $space-md;
+    justify-content: center;
+    align-items: center;
+}
+
+.socialLink {
+    @include glass;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-md;
+    color: $text-secondary;
+    transition: $transition-base;
+
+    &:hover {
+        color: $accent-bright;
+        border-color: $border-accent;
+        box-shadow: $shadow-glow;
+    }
+}
+
+// ─── SCROLL INDICATOR ───────────────────────────────────
+.scrollIndicator {
+    position: absolute;
+    bottom: $space-lg;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-xs;
+    color: $text-muted;
+    font-family: $font-mono;
+    font-size: $text-xs;
+    letter-spacing: 0.1em;
+    z-index: $z-base;
+}

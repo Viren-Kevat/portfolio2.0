@@ -1,0 +1,215 @@
+@use 'variables' as *;
+
+// ─── GLASS CARD ─────────────────────────────────────────
+@mixin glass {
+    background: rgba(17, 17, 17, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: $radius-lg;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+// ─── GLOW ───────────────────────────────────────────────
+@mixin glow($color: $accent-glow) {
+    box-shadow: 0 0 40px $color;
+}
+
+// ─── GRADIENT TEXT ──────────────────────────────────────
+@mixin gradient-text {
+    background: $gradient-accent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+// ─── GLOW CARD HOVER ────────────────────────────────────
+@mixin glow-card {
+    position: relative;
+    background: $bg-card;
+    border: 1px solid $border;
+    border-radius: $radius-md;
+    overflow: hidden;
+    transition: $transition-base;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top, rgba(168, 85, 247, 0.2), transparent 70%);
+        opacity: 0;
+        transition: $transition-base;
+        z-index: 0;
+    }
+
+    &:hover {
+        transform: translateY(-6px) scale($hover-scale);
+        box-shadow: $shadow-card, $shadow-glow;
+        border-color: $border-accent;
+
+        &::before {
+            opacity: 1;
+        }
+    }
+}
+
+// ─── BUTTON PRIMARY ─────────────────────────────────────
+@mixin btn-primary {
+    background: $accent;
+    color: $white;
+    border-radius: $radius-full;
+    padding: $space-xs $space-md;
+    font-family: $font-body;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    transition: $transition-base;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+        background: $accent-bright;
+        box-shadow: $shadow-glow;
+        transform: translateY(-2px);
+    }
+}
+
+// ─── BUTTON OUTLINE ─────────────────────────────────────
+@mixin btn-outline {
+    background: transparent;
+    color: $accent-bright;
+    border: 1px solid $border-accent;
+    border-radius: $radius-full;
+    padding: $space-xs $space-md;
+    font-family: $font-body;
+    font-weight: 500;
+    transition: $transition-base;
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(168, 85, 247, 0.1);
+        border-color: $accent-bright;
+        box-shadow: $shadow-glow;
+    }
+}
+
+// ─── ANIMATED UNDERLINE LINK ────────────────────────────
+@mixin underline-link {
+    position: relative;
+    color: $text-primary;
+    text-decoration: none;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0%;
+        height: 2px;
+        background: $gradient-accent;
+        border-radius: $radius-full;
+        transition: $transition-base;
+    }
+
+    &:hover::after {
+        width: 100%;
+    }
+
+    &:hover {
+        color: $accent-bright;
+    }
+}
+
+// ─── GLASS NAVBAR ───────────────────────────────────────
+@mixin glass-navbar {
+    position: sticky;
+    top: 0;
+    z-index: $z-navbar;
+    background: rgba(8, 8, 8, 0.80);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    transition: $transition-base;
+
+    &.scrolled {
+        background: rgba(8, 8, 8, 0.95);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+    }
+}
+
+// ─── CONTAINER ──────────────────────────────────────────
+@mixin container {
+    width: 100%;
+    max-width: $container-max;
+    margin: 0 auto;
+    padding: 0 $space-lg;
+
+    @include md {
+        padding: 0 $space-sm;
+    }
+}
+
+// ─── SECTION ────────────────────────────────────────────
+@mixin section {
+    padding: $space-2xl $space-lg;
+
+    @include md {
+        padding: $space-xl $space-sm;
+    }
+}
+
+// ─── ACCENT LINE ────────────────────────────────────────
+@mixin accent-line {
+    &::before {
+        content: '';
+        display: block;
+        width: 48px;
+        height: 3px;
+        background: $gradient-accent;
+        border-radius: $radius-full;
+        margin-bottom: $space-md;
+    }
+}
+
+// ─── FLEX HELPERS ───────────────────────────────────────
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+// ─── BREAKPOINTS ────────────────────────────────────────
+@mixin sm {
+    @media (max-width: #{$bp-sm}) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (max-width: #{$bp-md}) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media (max-width: #{$bp-lg}) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media (max-width: #{$bp-xl}) {
+        @content;
+    }
+}

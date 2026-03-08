@@ -1,0 +1,30 @@
+@use '../../../styles/variables' as *;
+
+// Both cursor elements are fixed, centered on cursor position
+// translate(-50%, -50%) keeps them centered on the exact mouse point
+%cursor-base {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none; // never blocks clicks
+    z-index: $z-overlay;
+    transform: translate(-50%, -50%);
+    border-radius: $radius-full;
+    // will-change: transform; // GPU acceleration hint
+}
+
+.dot {
+    @extend %cursor-base;
+    width: 8px;
+    height: 8px;
+    background: $accent-bright;
+    box-shadow: 0 0 10px $accent-glow;
+}
+
+.ring {
+    @extend %cursor-base;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(168, 85, 247, 0.6);
+    background: transparent;
+}

@@ -1,0 +1,108 @@
+@use 'variables' as *;
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// hide default cursor — our custom one replaces it
+* {
+    cursor: none !important;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: $bg-primary;
+    color: $text-primary;
+    font-family: $font-body;
+    font-size: $text-base;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: $transition-fast;
+}
+
+img,
+video {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: $font-body;
+    color: inherit;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-display;
+    color: $text-primary;
+    line-height: 1;
+}
+
+p {
+    color: $text-secondary;
+    font-family: $font-body;
+}
+
+input,
+textarea {
+    font-family: $font-body;
+    color: $text-primary;
+    background: $bg-card;
+    border: 1px solid $border;
+    border-radius: $radius-md;
+    transition: $transition-fast;
+
+    &:focus {
+        outline: none;
+        border-color: $border-accent;
+        box-shadow: 0 0 0 3px $accent-glow;
+    }
+}
+
+::selection {
+    background: $accent;
+    color: $white;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: $bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $accent;
+    border-radius: $radius-full;
+
+    &:hover {
+        background: $accent-bright;
+    }
+}

@@ -1,0 +1,275 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.contact {
+    position: relative;
+    background: $bg-secondary;
+    padding: $space-2xl 0 $space-xl;
+    overflow: hidden;
+}
+
+.bgOrb {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(123, 47, 190, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+// ─── INNER ──────────────────────────────────────────────
+.inner {
+    @include container;
+    position: relative;
+    z-index: $z-base;
+    display: flex;
+    flex-direction: column;
+    align-items: center; // everything centered
+    gap: $space-xl;
+}
+
+// ─── HEADING ────────────────────────────────────────────
+.headingWrap {
+    text-align: center;
+}
+
+.label {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    letter-spacing: 0.2em;
+    color: $accent-bright;
+    display: block;
+    margin-bottom: $space-sm;
+}
+
+.heading {
+    font-family: $font-display;
+    font-size: clamp(2.8rem, 5.5vw, 6rem);
+    line-height: 0.95;
+    color: $text-primary;
+    letter-spacing: 0.02em;
+}
+
+.accent {
+    @include gradient-text;
+}
+
+// ─── COMPACT CARD ───────────────────────────────────────
+// max-width 560px — sweet, compact, never too big
+.card {
+    width: 100%;
+    max-width: 560px;
+    @include glass;
+    border-radius: $radius-lg;
+    padding: $space-xl;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+}
+
+// name + email side by side
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-sm;
+
+    @include md {
+        grid-template-columns: 1fr;
+    }
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+// shared field base
+%base {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid $border;
+    border-radius: $radius-sm;
+    color: $text-primary;
+    font-family: $font-body;
+    font-size: $text-sm;
+    outline: none;
+    cursor: none;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.2);
+    }
+
+    &:focus {
+        border-color: $accent;
+        box-shadow: 0 0 0 2px rgba(123, 47, 190, 0.15);
+    }
+}
+
+.input {
+    @extend %base;
+    height: 42px;
+    padding: 0 0.85rem;
+}
+
+.textarea {
+    @extend %base;
+    padding: 0.7rem 0.85rem;
+    resize: none; // no resize handle — keeps card compact
+    line-height: 1.6;
+}
+
+.err {
+    border-color: rgba(239, 68, 68, 0.5) !important;
+}
+
+.errMsg {
+    font-family: $font-mono;
+    font-size: 10px;
+    color: #f87171;
+    letter-spacing: 0.05em;
+}
+
+// ─── SUBMIT ─────────────────────────────────────────────
+.submitBtn {
+    @include btn-primary;
+    width: 100%;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: $text-sm;
+    height: 44px;
+
+    &:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+    }
+}
+
+.dots {
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+
+    span {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: $white;
+        animation: bounce 1.2s infinite ease-in-out;
+
+        &:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        &:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.6);
+        opacity: 0.4;
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+// ─── SUCCESS ────────────────────────────────────────────
+.success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-sm;
+    padding: $space-xl 0;
+    text-align: center;
+}
+
+.successIcon {
+    color: #22c55e;
+}
+
+.successTitle {
+    font-family: $font-display;
+    font-size: $text-2xl;
+    color: $text-primary;
+    letter-spacing: 0.02em;
+}
+
+.successSub {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $text-muted;
+    letter-spacing: 0.1em;
+}
+
+// ─── BOTTOM — socials + footer ───────────────────────────
+.bottom {
+    width: 100%;
+    max-width: 560px; // aligned with card width
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: $space-sm;
+}
+
+.socialBtn {
+    @include glass;
+    width: 40px;
+    height: 40px;
+    border-radius: $radius-md;
+    @include flex-center;
+    color: $text-secondary;
+    transition: $transition-base;
+
+    &:hover {
+        color: $accent-bright;
+        border-color: $border-accent;
+        box-shadow: $shadow-glow;
+    }
+}
+
+// ─── FOOTER ─────────────────────────────────────────────
+.footer {
+    @include flex-between;
+    padding-top: $space-md;
+    border-top: 1px solid $border;
+}
+
+.copy {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $text-muted;
+    letter-spacing: 0.1em;
+}
+
+.backTop {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $text-muted;
+    letter-spacing: 0.12em;
+    background: transparent;
+    border: none;
+    cursor: none;
+    transition: color $transition-fast;
+
+    &:hover {
+        color: $accent-bright;
+    }
+}

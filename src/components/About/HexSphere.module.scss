@@ -1,0 +1,61 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.wrap {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    // deep nebula glow
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -52%);
+        width: 600px;
+        height: 400px;
+        border-radius: 50%;
+        background: radial-gradient(ellipse,
+                rgba(123, 47, 190, 0.22) 0%,
+                rgba(109, 40, 217, 0.08) 45%,
+                transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+
+        @include md {
+            width: 320px;
+            height: 260px;
+        }
+    }
+
+    // second subtle glow offset
+    &::after {
+        content: '';
+        position: absolute;
+        top: 40%;
+        left: 45%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(circle,
+                rgba(168, 85, 247, 0.1) 0%,
+                transparent 65%);
+        pointer-events: none;
+        z-index: 0;
+    }
+}
+
+.hint {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $text-muted;
+    letter-spacing: 0.15em;
+    margin-top: $space-sm;
+    opacity: 0.45;
+    position: relative;
+    z-index: 1;
+}

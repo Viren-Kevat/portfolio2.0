@@ -1,0 +1,311 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+// ─── SECTION ────────────────────────────────────────────
+.about {
+    position: relative;
+    @include section;
+    background: $bg-primary;
+    overflow: hidden;
+}
+
+.bgAccent {
+    position: absolute;
+    top: 50%;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(123, 47, 190, 0.07), transparent 70%);
+    border-radius: $radius-full;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+// ─── CONTAINER ──────────────────────────────────────────
+.container {
+    @include container;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2xl;
+}
+
+// ─── LABEL + HEADING ────────────────────────────────────
+.labelWrap {
+    text-align: center;
+}
+
+.label {
+    font-family: $font-mono;
+    font-size: $text-sm;
+    letter-spacing: 0.2em;
+    color: $accent-bright;
+    display: block;
+    margin-bottom: $space-sm;
+}
+
+.heading {
+    font-family: $font-display;
+    font-size: clamp(#{$text-3xl}, 7vw, #{$text-5xl});
+    line-height: 0.95;
+    color: $text-primary;
+    letter-spacing: 0.02em;
+}
+
+.headingAccent {
+    @include gradient-text;
+}
+
+// ─── MAIN GRID ──────────────────────────────────────────
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: $space-2xl;
+    align-items: center;
+
+    @include lg {
+        grid-template-columns: 1fr;
+        gap: $space-xl;
+    }
+}
+
+// ─── PHOTO ──────────────────────────────────────────────
+.photoWrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-md;
+}
+
+.photoFrame {
+    position: relative;
+    width: 340px;
+    height: 420px;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    border: 1px solid $border-accent;
+
+    @include md {
+        width: 280px;
+        height: 350px;
+    }
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    position: relative;
+    z-index: $z-base;
+    filter: grayscale(20%) contrast(1.1);
+    transition: $transition-slow;
+
+    &:hover {
+        filter: grayscale(0%) contrast(1);
+    }
+}
+
+.photoPlaceholder {
+    position: absolute;
+    inset: 0;
+    @include flex-center;
+    background: $gradient-card;
+    font-family: $font-display;
+    font-size: $text-4xl;
+    color: $accent-bright;
+    letter-spacing: 0.1em;
+    z-index: 0;
+}
+
+.photoGlow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(123, 47, 190, 0.5) 0%,
+            transparent 50%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.photoCorner {
+    position: absolute;
+    bottom: $space-sm;
+    right: $space-sm;
+    width: 60px;
+    height: 60px;
+    border-right: 2px solid $accent-bright;
+    border-bottom: 2px solid $accent-bright;
+    border-radius: 0 0 $radius-sm 0;
+    z-index: 3;
+}
+
+// ─── FLOATING BADGE ─────────────────────────────────────
+.badge {
+    @include glass;
+    display: inline-flex;
+    align-items: center;
+    gap: $space-xs;
+    padding: 0.5rem 1rem;
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $text-primary;
+    letter-spacing: 0.05em;
+}
+
+.badgeDot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: $radius-full;
+    box-shadow: 0 0 8px #22c55e;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(0.8);
+    }
+}
+
+// ─── BIO ────────────────────────────────────────────────
+.bioWrap {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xl;
+}
+
+.bio {
+    font-family: $font-body;
+    font-size: $text-lg;
+    color: $text-secondary;
+    font-weight: 300;
+    line-height: 1.9;
+    border-left: 2px solid $accent;
+    padding-left: $space-md;
+}
+
+// ─── STATS ──────────────────────────────────────────────
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $space-sm;
+
+    @include md {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.stat {
+    @include glass;
+    padding: $space-md;
+    text-align: center;
+    border-radius: $radius-md;
+    transition: $transition-base;
+
+    &:hover {
+        border-color: $border-accent;
+        box-shadow: $shadow-glow;
+        transform: translateY(-4px);
+    }
+}
+
+.statValue {
+    font-family: $font-display;
+    font-size: $text-3xl;
+    @include gradient-text;
+    display: block;
+    line-height: 1;
+    margin-bottom: $space-xs;
+}
+
+.statLabel {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $text-muted;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+// ─── RESUME BUTTON ──────────────────────────────────────
+.resumeBtn {
+    @include btn-primary;
+    font-size: $text-base;
+    padding: 0.8rem 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: $space-xs;
+    width: fit-content;
+}
+
+// ─── SKILLS ─────────────────────────────────────────────
+.skillsSection {
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+}
+
+.skillsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: $space-sm;
+}
+
+.skillCard {
+    @include glass;
+    padding: $space-sm $space-md;
+    border-radius: $radius-md;
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+    transition: $transition-base;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        border-color: $border-accent;
+        box-shadow: $shadow-glow;
+        transform: translateY(-3px);
+
+        .skillFill {
+            background: $gradient-accent;
+        }
+    }
+}
+
+.skillIcon {
+    color: $accent-bright;
+    flex-shrink: 0;
+}
+
+.skillName {
+    font-family: $font-body;
+    font-size: $text-sm;
+    color: $text-primary;
+    font-weight: 500;
+    flex: 1;
+}
+
+.skillBar {
+    width: 60px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: $radius-full;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.skillFill {
+    height: 100%;
+    background: $gradient-accent;
+    border-radius: $radius-full;
+    transition: background $transition-base;
+}

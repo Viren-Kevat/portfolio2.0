@@ -1,0 +1,386 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+// ─── SECTION ────────────────────────────────────────────
+.projects {
+    position: relative;
+    background: $bg-secondary;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    // force GPU compositing layer — helps backdrop-filter on production
+    transform: translateZ(0);
+}
+
+// ─── HEADING (LEFT COLUMN) ──────────────────────────────
+.headingWrap {
+    width: 280px;
+    min-width: 280px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: $space-xl $space-lg $space-xl $space-xl;
+    position: relative;
+    z-index: $z-card;
+    flex-shrink: 0;
+    border-right: 1px solid rgba(123, 47, 190, 0.25);
+    // isolate stacking context so backdrop-filter isn't killed by GSAP
+    isolation: isolate;
+
+    // ── glass blur lives on ::before pseudo element ──
+    // This is the key fix: backdrop-filter on a pseudo element
+    // is not affected by parent transform (GSAP pin adds transform)
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(8, 8, 8, 0.72);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        z-index: -1;
+        transform: translateZ(0);
+        // will-change: auto;
+        border-radius: inherit;
+    }
+
+    // purple accent line on right edge
+    &::after {
+        content: '';
+        position: absolute;
+        right: -1px;
+        top: 20%;
+        height: 60%;
+        width: 1px;
+        background: $gradient-accent;
+        opacity: 0.6;
+        z-index: 1;
+    }
+}
+
+.label {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    letter-spacing: 0.2em;
+    color: $accent-bright;
+    display: block;
+    margin-bottom: $space-md;
+}
+
+.heading {
+    font-family: $font-display;
+    font-size: clamp(3rem, 4vw, 5rem);
+    line-height: 0.95;
+    color: $text-primary;
+    letter-spacing: 0.02em;
+    margin-bottom: $space-md;
+}
+
+.headingAccent {
+    @include gradient-text;
+}
+
+.headingSubtext {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $text-muted;
+    letter-spacing: 0.1em;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-top: $space-lg;
+    align-self: flex-start;
+}
+
+// ─── HORIZONTAL TRACK ───────────────────────────────────
+.track {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: $space-lg;
+    padding: 0 40vw 0 $space-xl;
+    width: max-content;
+    height: 100%;
+    // will-change: transform;
+    position: relative;
+}
+
+// ─── PROJECT CARD ───────────────────────────────────────
+.card {
+    position: relative;
+    width: 420px;
+    height: 72vh;
+    max-height: 560px;
+    min-height: 460px;
+    background: $bg-card;
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    padding: $space-xl;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: $transition-base;
+
+    &:hover {
+        border-color: $border-accent;
+        transform: translateY(-8px);
+        box-shadow: $shadow-card, $shadow-glow;
+    }
+}
+
+.cardGlow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    transition: $transition-slow;
+
+    .card:hover & {
+        opacity: 1.5;
+    }
+}
+
+// ─── PROJECT NUMBER ─────────────────────────────────────
+.projectNum {
+    position: absolute;
+    top: $space-md;
+    right: $space-lg;
+    font-family: $font-display;
+    font-size: $text-5xl;
+    color: rgba(255, 255, 255, 0.04);
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+    transition: $transition-base;
+
+    .card:hover & {
+        color: rgba(168, 85, 247, 0.08);
+    }
+}
+
+// ─── CARD TOP ───────────────────────────────────────────
+.cardTop {
+    @include flex-between;
+    position: relative;
+    z-index: $z-base;
+}
+
+.year {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $text-muted;
+    letter-spacing: 0.15em;
+}
+
+.cardActions {
+    display: flex;
+    gap: $space-xs;
+}
+
+.iconBtn {
+    @include glass;
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-md;
+    @include flex-center;
+    color: $text-secondary;
+    transition: $transition-base;
+
+    &:hover {
+        color: $accent-bright;
+        border-color: $border-accent;
+        box-shadow: $shadow-glow;
+    }
+}
+
+// ─── CARD CONTENT ───────────────────────────────────────
+.cardContent {
+    position: relative;
+    z-index: $z-base;
+    flex: 1;
+}
+
+.subtitle {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $accent-bright;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: $space-xs;
+}
+
+.title {
+    font-family: $font-display;
+    font-size: $text-3xl;
+    color: $text-primary;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: $space-md;
+}
+
+.description {
+    font-family: $font-body;
+    font-size: $text-sm;
+    color: $text-secondary;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+// ─── TAGS ───────────────────────────────────────────────
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    position: relative;
+    z-index: $z-base;
+}
+
+.tag {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $accent-bright;
+    background: rgba(168, 85, 247, 0.08);
+    border: 1px solid $border-accent;
+    border-radius: $radius-full;
+    padding: 0.25rem 0.75rem;
+    letter-spacing: 0.05em;
+    transition: $transition-fast;
+
+    &:hover {
+        background: rgba(168, 85, 247, 0.15);
+        box-shadow: 0 0 12px $accent-glow;
+    }
+}
+
+// ─── CARD CTA ───────────────────────────────────────────
+.cardCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: $font-body;
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $accent-bright;
+    text-decoration: none;
+    position: relative;
+    z-index: $z-base;
+    transition: $transition-fast;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+// ─── END CARD ───────────────────────────────────────────
+.endCard {
+    width: 340px;
+    height: 72vh;
+    max-height: 560px;
+    min-height: 460px;
+    @include flex-center;
+    flex-direction: column;
+    gap: $space-lg;
+    flex-shrink: 0;
+    text-align: center;
+    padding: $space-xl;
+}
+
+.endLabel {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    color: $text-muted;
+    letter-spacing: 0.2em;
+}
+
+.endTitle {
+    font-family: $font-display;
+    font-size: $text-4xl;
+    color: $text-primary;
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+}
+
+.endBtn {
+    @include btn-primary;
+    gap: $space-xs;
+    font-size: $text-base;
+    padding: 0.8rem 2rem;
+}
+
+// ─── MOBILE OVERRIDES ───────────────────────────────────
+@include sm {
+    .projects {
+        height: auto;
+        min-height: 100vh;
+        flex-direction: column;
+        overflow: visible;
+        transform: none; // ← reset on mobile
+    }
+
+    .headingWrap {
+        width: 100%;
+        min-width: unset;
+        border-right: none;
+        padding: $space-lg $space-lg $space-sm;
+        height: auto;
+        isolation: auto;
+
+        &::before {
+            display: none; // not needed on mobile
+        }
+
+        &::after {
+            display: none;
+        }
+    }
+
+    .headingSubtext {
+        writing-mode: horizontal-tb;
+        transform: none;
+        margin-top: $space-xs;
+    }
+
+    .track {
+        flex-direction: row;
+        align-items: flex-start;
+        width: 100%;
+        height: auto;
+        padding: $space-md 11vw $space-xl 11vw;
+        gap: $space-md;
+        overflow-x: scroll;
+        overflow-y: visible;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 11vw;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        transform: none !important;
+        // will-change: auto;
+        box-sizing: border-box;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .card {
+        width: 78vw;
+        min-width: 280px;
+        height: auto;
+        min-height: unset;
+        max-height: unset;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        padding: 1rem;
+    }
+
+    .endCard {
+        width: 72vw;
+        min-width: 260px;
+        height: auto;
+        min-height: unset;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+    }
+}

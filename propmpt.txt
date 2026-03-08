@@ -1,0 +1,351 @@
+# VIREN KEVAT — PORTFOLIO 2026 — MASTER CONTEXT PROMPT
+# Paste this at the start of any new chat to resume the project with full context.
+
+---
+
+## WHO I AM
+- **Name:** Viren Kevat
+- **Role:** Full Stack Developer, Final Year IT @ GEC Modasa
+- **GitHub:** https://github.com/Viren-Kevat
+- **LinkedIn:** https://www.linkedin.com/in/viren-kevat
+- **Email:** viren0210@gmail.com
+- **Domain:** virenkevat.com (to be connected to Vercel)
+- **OS:** Windows, Node v22.x
+
+---
+
+## PROJECT OVERVIEW
+Building a **premium dark-theme personal portfolio** for 2026 — inspired by AWWWARDS-level sites.
+Stack: **React 18 + Vite**, SCSS Modules, Three.js, Framer Motion, GSAP + Lenis smooth scroll.
+
+**Project path:** `E:\viren\development\react\portfolio_2026\profile_2026`
+**Backend path:** `E:\viren\backend\email\`
+
+---
+
+## DESIGN SYSTEM — NEVER BREAK THESE RULES
+
+### Colors
+```scss
+$bg-primary:    #080808   // main background
+$bg-card:       #111111   // card/surface background  
+$accent:        #7B2FBE   // primary purple
+$accent-bright: #A855F7   // bright purple (hover/highlight)
+$gradient-accent: linear-gradient(135deg, #7B2FBE, #A855F7)
+$text-primary:  #ffffff
+$text-secondary:#a3a3a3
+$text-muted:    #6b7280
+```
+
+### Typography
+```scss
+$font-display: 'Bebas Neue'      // headings — all caps, bold
+$font-body:    'DM Sans'         // body text
+$font-mono:    'JetBrains Mono'  // code labels, mono accents
+```
+
+### Spacing
+```scss
+$space-xs: 0.25rem  $space-sm: 0.5rem   $space-md: 1rem
+$space-lg: 1.5rem   $space-xl: 2rem     $space-2xl: 4rem
+```
+
+### Rules
+- **ZERO hardcoded values** — always use `$variables`
+- Every SCSS file starts with:
+  ```scss
+  @use '../../styles/variables' as *;
+  @use '../../styles/mixins' as *;
+  ```
+- `cursor: none` globally — `CustomCursor` handles all cursor rendering
+- `setCursorType('hover')` on interactive elements, `'magnetic'` on buttons, `'text'` on inputs
+- Magnetic buttons wrapped in `<MagneticButton>` component
+- All scroll animations: Lenis → GSAP ScrollTrigger
+- `window.lenis` exposed globally for ScrollTrigger proxy
+
+---
+
+## APP STRUCTURE
+
+### `App.jsx`
+```jsx
+<PageTransition />     // purple wipe loader — plays once on load
+<CustomCursor />       // handles cursor globally (cursor: none)
+<NoiseOverlay />       // film grain — position: fixed, opacity 0.03 (REMOVED — now only in Projects section)
+<SmoothScroll>         // Lenis wrapper
+    <Navbar />
+    <Hero id="home" />
+    <About id="about" />
+    <Projects id="projects" />
+    <Blog id="blog" />
+    <Contact id="contact" />
+</SmoothScroll>
+```
+
+---
+
+## COMPLETED SECTIONS
+
+### ✅ Navbar
+- Glass morphism: `backdrop-filter: blur(18px)`, semi-transparent bg
+- Logo: `VIREN.` with purple `V`
+- Nav links: HOME, ABOUT, PROJECTS, BLOG, CONTACT
+- Active link: purple underline
+- CTA: `Hire Me` — purple pill button (MagneticButton)
+- Smooth scroll to sections on click
+
+### ✅ Hero
+- Full viewport height
+- Three.js canvas background: floating particle supernova / star field
+- Big display heading: `FULL STACK` / `DEVELOPER` in Bebas Neue
+- Subtitle, CTA buttons
+- Scroll indicator at bottom
+
+### ✅ About
+- Two-column layout: left = bio text + stats, right = skill visualization
+- Bio: name, role, college, short description
+- Stats: years experience, projects built, etc.
+- **Skill Visualization: `HexSphere`** — 3D geodesic sphere (truncated icosahedron = soccer ball shape)
+  - 20 hexagons + 12 pentagons = 32 tiles
+  - Built with `@react-three/fiber` + `@react-three/drei`
+  - All tiles dark `#111111` by default
+  - Hover → tile glows with purple accent color + skill label turns white
+  - Back face labels hidden (dot product check vs camera)
+  - Auto-rotates, drag to spin (OrbitControls), touch support
+  - Purple point lights only — matches theme
+  - File: `src/components/About/HexSphere.jsx` + `HexSphere.module.scss`
+
+### ✅ Projects
+- **Horizontal scroll** — GSAP ScrollTrigger pins section, moves track left
+- Left column (280px): "WHAT I'VE BUILT" heading, glass bg, purple accent line
+- Track: cards side by side, GSAP `x: -totalWidth` on scroll
+- Cards (420px wide, 72vh tall): project number ghost, year, GitHub/Live links, title, description, tags, "View Project →" CTA
+- End card: "See All Projects" + GitHub link
+- Spacer div at end prevents clipping
+- Mobile (<576px): GSAP skipped, native CSS horizontal swipe, `scroll-snap-type: x mandatory`
+- **NoiseOverlay inside Projects section** — `position: absolute`, `opacity: 0.03`
+- Data: `src/data/projects.js`
+- Files: `src/components/Projects/Projects.jsx` + `Projects.module.scss`
+
+### ✅ Blog
+- Editorial heading layout: big display left, description + post count right
+- Category filter pills with Framer Motion `layoutId="activePill"` sliding bg
+- Auto-fill grid: `repeat(auto-fill, minmax(320px, 1fr))`
+- BlogCard: ghost post number, featured badge, category+tag, excerpt clamped 3 lines
+- Staggered scroll-triggered reveals via `useInView`
+- AnimatePresence `mode="popLayout"` for filter transitions
+- 5 placeholder posts in `src/data/posts.js`
+- Files: `src/components/Blog/Blog.jsx` + `Blog.module.scss`
+
+### ✅ Contact
+- Centered single-column layout
+- Heading: "GOT AN IDEA? / LET'S TALK." (gradient on second line)
+- Glass card (max-width 520px): name | email grid + message textarea
+- Send button: MagneticButton, purple
+- Sending state: 3 bouncing dots animation
+- Success state: CheckCircle + "Message sent!" + "I'll reply within 24h."
+- Error state: inline error message with backend fallback
+- 4 social icon buttons below card
+- Footer: © 2025 | Back to top ↑
+- **Connected to live backend API**
+- Files: `src/components/Contact/Contact.jsx` + `Contact.module.scss`
+
+### ✅ NoiseOverlay
+- Canvas-based real pixel noise (not SVG filter — that didn't work)
+- `position: absolute` inside Projects section only
+- `opacity: 0.03`, `mixBlendMode: 'screen'`
+- File: `src/components/ui/NoiseOverlay/NoiseOverlay.jsx`
+
+### ✅ PageTransition
+- Full screen `#080808` overlay on first load
+- `VIREN.` logo fades in center
+- Purple loading bar fills left → right (1.2s)
+- `// loading portfolio` mono label
+- After 1.8s: overlay wipes upward revealing site (cubic bezier `[0.76, 0, 0.24, 1]`)
+- Component unmounts completely after animation
+- `zIndex: 9999` — above everything
+- Files: `src/components/ui/PageTransition/PageTransition.jsx` + `.module.scss`
+
+---
+
+## BACKEND — FULLY WORKING ✅
+
+**Live URL:** `https://email-otrf.onrender.com`
+**Stack:** Node.js + Express + Resend + dotenv + cors
+**Path:** `E:\viren\backend\email\index.js`
+**Type:** ES Modules (`"type": "module"` in package.json)
+
+### Features
+- `POST /contact` — receives `{ name, email, message }`
+- Server-side validation: email regex, length limits (name≤100, email≤200, message≤2000)
+- HTML sanitization: strips tags from all inputs
+- Rate limiting: 3 requests per IP per 10 min (Map-based, no package)
+- Health check: `GET /` → `{ status: '✅ Contact API is running' }`
+
+### Sends TWO emails via Resend:
+1. **Notification to Viren** — branded dark HTML template, "Reply to [sender]" button
+2. **Confirmation to sender** — dark theme matching portfolio:
+   - `VIREN.` header with purple V
+   - `// message received` badge
+   - "GOT YOUR MESSAGE!" heading with purple gradient
+   - Message quoted back in purple left-border box
+   - GitHub / LinkedIn / Email social buttons
+   - Sign off: "Full Stack Developer · Final Year IT @ GEC Modasa"
+   - File: `E:\viren\backend\email\confirmationEmail.js`
+
+### Environment Variables (Render)
+```
+RESEND_API_KEY=your_key
+ALLOWED_ORIGIN=*  (update to Vercel URL after deploy)
+PORT=3000
+```
+
+### Frontend .env
+```
+VITE_API_URL=https://email-otrf.onrender.com
+```
+
+---
+
+## PENDING / TODO
+
+### 🔲 HexSphere Polish (currently in progress)
+- Tiles dark `#111111` default, purple accent on hover — DONE
+- Back face labels hidden — DONE
+- Still needs: label text readable, gap between tiles clean
+- Consider adding skill name as tooltip instead of on-tile text if too cramped
+- File: `src/components/About/HexSphere.jsx`
+
+### 🔲 Contact.jsx — connect real API
+Replace the `setTimeout` mock with real fetch:
+```javascript
+const res = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(fields)
+})
+```
+
+### 🔲 Deploy Frontend → Vercel
+- `npm run build` → deploy to Vercel
+- Add env var: `VITE_API_URL=https://email-otrf.onrender.com`
+- Connect domain: virenkevat.com → Vercel DNS
+
+### 🔲 Update Backend CORS on Render
+After Vercel deploy, update:
+```
+ALLOWED_ORIGIN=https://virenkevat.com
+```
+
+### 🔲 Verify Resend custom domain
+- Add virenkevat.com to Resend
+- Change `from: 'onboarding@resend.dev'` → `from: 'hello@virenkevat.com'`
+
+---
+
+## KEY PACKAGES
+```json
+{
+  "react": "^18",
+  "vite": "latest",
+  "framer-motion": "latest",
+  "gsap": "latest",
+  "@studio-freight/lenis": "latest",
+  "three": "latest",
+  "@react-three/fiber": "latest",
+  "@react-three/drei": "latest",
+  "lucide-react": "latest",
+  "sass": "latest"
+}
+```
+
+---
+
+## IMPORTANT PATTERNS
+
+### GSAP + Lenis ScrollTrigger proxy (in every section using GSAP):
+```javascript
+ScrollTrigger.scrollerProxy(document.body, {
+    scrollTop(value) {
+        if (arguments.length) window.lenis?.scrollTo(value)
+        return window.lenis?.scroll || window.scrollY
+    },
+    getBoundingClientRect() {
+        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }
+    }
+})
+```
+
+### useCursor pattern:
+```javascript
+const { setCursorType } = useCursor()
+// on elements: onMouseEnter={() => setCursorType('hover')}
+//              onMouseLeave={() => setCursorType('default')}
+// on inputs:   onFocus={() => setCursorType('text')}
+// on buttons:  onMouseEnter={() => setCursorType('magnetic')}
+```
+
+### SCSS module import (every file):
+```scss
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+```
+
+### MagneticButton usage:
+```jsx
+<MagneticButton strength={0.3}>
+    <button onMouseEnter={() => setCursorType('magnetic')} ...>
+        Label
+    </button>
+</MagneticButton>
+```
+
+---
+
+## FILE STRUCTURE
+```
+src/
+├── components/
+│   ├── Navbar/
+│   ├── Hero/
+│   ├── About/
+│   │   ├── About.jsx
+│   │   ├── About.module.scss
+│   │   └── HexSphere.jsx          ← 3D geodesic skill sphere
+│   │   └── HexSphere.module.scss
+│   ├── Projects/
+│   │   ├── Projects.jsx           ← horizontal scroll + NoiseOverlay
+│   │   └── Projects.module.scss
+│   ├── Blog/
+│   │   ├── Blog.jsx
+│   │   └── Blog.module.scss
+│   ├── Contact/
+│   │   ├── Contact.jsx
+│   │   └── Contact.module.scss
+│   └── ui/
+│       ├── CustomCursor/
+│       ├── MagneticButton/
+│       ├── NoiseOverlay/          ← canvas grain, position:absolute
+│       ├── PageTransition/        ← purple wipe loader
+│       └── SmoothScroll/          ← Lenis wrapper
+├── context/
+│   └── CursorContext.jsx
+├── data/
+│   ├── projects.js
+│   └── posts.js
+└── styles/
+    ├── _variables.scss
+    ├── _mixins.scss
+    └── globals.scss
+```
+
+---
+
+## RESUME INSTRUCTIONS FOR AI
+When starting a new chat with this prompt:
+1. Read all sections carefully — this is a live project in active development
+2. The HexSphere is the current focus — tiles need polish
+3. After HexSphere is done: connect Contact API → deploy Vercel → update CORS
+4. Never suggest rewriting completed sections from scratch
+5. Always follow the design system rules (variables, cursor, SCSS imports)
+6. Ask for screenshots when doing UI work — Viren will send them for feedback

@@ -1,0 +1,122 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.navbar {
+    @include glass-navbar;
+    width: 100%;
+}
+
+.inner {
+    @include container;
+    @include flex-between;
+    height: 70px;
+    gap: $space-lg;
+}
+
+// ─── LOGO ────────────────────────────────────────────────
+.logo {
+    font-family: $font-display;
+    font-size: $text-2xl;
+    color: $text-primary;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+}
+
+.logoAccent {
+    @include gradient-text;
+}
+
+.logoDot {
+    color: $accent-bright;
+}
+
+// ─── DESKTOP LINKS ───────────────────────────────────────
+.links {
+    display: flex;
+    align-items: center;
+    gap: $space-lg;
+    list-style: none;
+
+    @include md {
+        display: none;
+    }
+}
+
+.link {
+    @include underline-link;
+    font-size: $text-sm;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $text-secondary;
+    transition: $transition-base;
+
+    &.active {
+        color: $accent-bright;
+
+        &::after {
+            width: 100%;
+        }
+    }
+}
+
+// ─── CTA BUTTON ──────────────────────────────────────────
+.cta {
+    @include btn-primary;
+    font-size: $text-sm;
+    padding: 0.5rem 1.25rem;
+    flex-shrink: 0;
+
+    @include md {
+        display: none;
+    }
+}
+
+// ─── HAMBURGER ───────────────────────────────────────────
+.hamburger {
+    display: none;
+    color: $text-primary;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: $transition-fast;
+
+    &:hover {
+        color: $accent-bright;
+    }
+
+    @include md {
+        display: flex;
+    }
+}
+
+// ─── SCROLLED STATE ──────────────────────────────────────
+.scrolled {
+    background: rgba(8, 8, 8, 0.9) !important;
+    box-shadow: $shadow-sm;
+}
+
+// ─── MOBILE MENU ─────────────────────────────────────────
+.mobileMenu {
+    overflow: hidden;
+    border-top: 1px solid $border;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobileLink {
+    padding: $space-sm $space-lg;
+    color: $text-secondary;
+    font-size: $text-base;
+    font-weight: 500;
+    text-decoration: none;
+    transition: $transition-fast;
+    border-bottom: 1px solid $border;
+
+    &:hover,
+    &.active {
+        color: $accent-bright;
+        background: rgba(168, 85, 247, 0.05);
+        padding-left: calc(#{$space-lg} + 8px);
+    }
+}

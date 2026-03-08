@@ -1,0 +1,64 @@
+@use 'variables' as *;
+
+.display {
+    font-family: $font-display;
+    line-height: 0.95;
+}
+
+.display-hero {
+    font-family: $font-display;
+    font-size: $text-hero;
+    line-height: 0.9;
+}
+
+.mono {
+    font-family: $font-mono;
+}
+
+.text-xs {
+    font-size: $text-xs;
+}
+
+.text-sm {
+    font-size: $text-sm;
+}
+
+.text-base {
+    font-size: $text-base;
+}
+
+.text-lg {
+    font-size: $text-lg;
+}
+
+.text-xl {
+    font-size: $text-xl;
+}
+
+.text-2xl {
+    font-size: $text-2xl;
+}
+
+.text-3xl {
+    font-size: $text-3xl;
+}
+
+.text-4xl {
+    font-size: $text-4xl;
+}
+
+.text-primary {
+    color: $text-primary;
+}
+
+.text-secondary {
+    color: $text-secondary;
+}
+
+.text-muted {
+    color: $text-muted;
+}
+
+.text-accent {
+    color: $accent-bright;
+}
