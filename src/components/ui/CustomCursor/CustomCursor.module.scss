@@ -10,7 +10,11 @@
     z-index: $z-overlay;
     transform: translate(-50%, -50%);
     border-radius: $radius-full;
-    // will-change: transform; // GPU acceleration hint
+    will-change: transform; // GPU acceleration hint
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
 
 .dot {
