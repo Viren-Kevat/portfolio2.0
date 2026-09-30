@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import CustomCursor from './components/ui/CustomCursor/CustomCursor'
 import SmoothScroll from './components/ui/SmoothScroll/SmoothScroll'
 import Navbar from './components/Navbar/Navbar'
@@ -22,6 +23,8 @@ function App() {
         <Blog />
         <Contact />
       </SmoothScroll>
+
+      <Analytics />
     </>
   )
 }
