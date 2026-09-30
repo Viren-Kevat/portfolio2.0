@@ -58,7 +58,7 @@
 }
 
 // ─── COMPACT CARD ───────────────────────────────────────
-// max-width 560px — sweet, compact, never too big
+// max-width 560px - sweet, compact, never too big
 .card {
     width: 100%;
     max-width: 560px;
@@ -119,7 +119,7 @@
 .textarea {
     @extend %base;
     padding: 0.7rem 0.85rem;
-    resize: none; // no resize handle — keeps card compact
+    resize: none; // no resize handle - keeps card compact
     line-height: 1.6;
 }
 
@@ -214,7 +214,7 @@
     letter-spacing: 0.1em;
 }
 
-// ─── BOTTOM — socials + footer ───────────────────────────
+// ─── BOTTOM - socials + footer ───────────────────────────
 .bottom {
     width: 100%;
     max-width: 560px; // aligned with card width

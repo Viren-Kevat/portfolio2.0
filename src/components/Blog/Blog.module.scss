@@ -110,7 +110,7 @@
     gap: $space-xs;
 }
 
-// each category button — position relative for the sliding pill
+// each category button - position relative for the sliding pill
 .filterBtn {
     position: relative;
     font-family: $font-mono;
@@ -136,7 +136,7 @@
     border-color: $accent;
 }
 
-// the sliding animated background — driven by framer-motion layoutId
+// the sliding animated background - driven by framer-motion layoutId
 .filterPill {
     position: absolute;
     inset: 0;
@@ -151,7 +151,7 @@
 }
 
 // ─── CARD GRID ──────────────────────────────────────────
-// auto-fill columns — minimum 320px, max 1fr
+// auto-fill columns - minimum 320px, max 1fr
 // this is responsive without any media queries
 .grid {
     @include container;
@@ -194,13 +194,13 @@
     }
 }
 
-// featured card — slightly different accent
+// featured card - slightly different accent
 .cardFeatured {
     border-color: rgba(123, 47, 190, 0.3);
     background: linear-gradient(135deg, rgba(123, 47, 190, 0.06) 0%, $bg-card 60%);
 }
 
-// hover glow — invisible by default, fades in on hover
+// hover glow - invisible by default, fades in on hover
 .cardGlow {
     position: absolute;
     inset: 0;

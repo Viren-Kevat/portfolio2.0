@@ -1,4 +1,4 @@
-// Magnetic effect — element gets pulled toward cursor
+// Magnetic effect - element gets pulled toward cursor
 // This is the hook that powers magnetic buttons
 import { useRef, useCallback } from 'react'
 import { gsap } from 'gsap'

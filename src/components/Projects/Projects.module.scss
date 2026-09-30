@@ -9,7 +9,7 @@
     height: 100vh;
     display: flex;
     flex-direction: row;
-    // force GPU compositing layer — helps backdrop-filter on production
+    // force GPU compositing layer - helps backdrop-filter on production
     transform: translateZ(0);
 }
 

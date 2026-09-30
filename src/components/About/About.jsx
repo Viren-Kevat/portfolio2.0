@@ -59,12 +59,12 @@ const fadeRight = {
 }
 
 // ─── SKILL CARD ─────────────────────────────────────────
-// extracted as its own component — good React pattern
+// extracted as its own component - good React pattern
 // keeps About clean and makes SkillCard reusable
 const SkillCard = ({ skill, index }) => {
     const { setCursorType } = useCursor()
     const ref = useRef(null)
-    // useInView from framer-motion — triggers when element enters viewport
+    // useInView from framer-motion - triggers when element enters viewport
     const inView = useInView(ref, { once: true, margin: '-50px' })
 
     return (
@@ -101,7 +101,7 @@ const About = () => {
     const headingRef = useRef(null)
     const photoRef = useRef(null)
 
-    // useInView — animates when section scrolls into view
+    // useInView - animates when section scrolls into view
     const headingInView = useInView(headingRef, { once: true, margin: '-100px' })
     const photoInView = useInView(photoRef, { once: true, margin: '-100px' })
 
@@ -132,7 +132,7 @@ const About = () => {
                 {/* ── MAIN GRID ───────────────────────────── */}
                 <div className={styles.grid}>
 
-                    {/* LEFT — Photo */}
+                    {/* LEFT - Photo */}
                     <motion.div
                         ref={photoRef}
                         className={styles.photoWrap}
@@ -170,7 +170,7 @@ const About = () => {
                         </motion.div>
                     </motion.div>
 
-                    {/* RIGHT — Bio + Stats */}
+                    {/* RIGHT - Bio + Stats */}
                     <motion.div
                         className={styles.bioWrap}
                         variants={fadeRight}
@@ -187,7 +187,7 @@ const About = () => {
                             of the web, driven by the belief that code is a canvas for creativity.
                             Today, whether I'm fine-tuning a WordPress interface or building MERN
                             applications, I focus on creating work that is ready for the world stage.
-                            For me, web development is more than a career — it's the most powerful
+                            For me, web development is more than a career - it's the most powerful
                             medium to share innovation with everyone.
                         </p>
 

@@ -251,7 +251,7 @@ const Nucleus = () => {
                 <meshBasicMaterial color="#C084FC" wireframe transparent opacity={0.35} />
             </mesh>
 
-            {/* wireframe shell 2 — counter rotating */}
+            {/* wireframe shell 2 - counter rotating */}
             <mesh ref={wire2Ref}>
                 <icosahedronGeometry args={[0.56, 2]} />
                 <meshBasicMaterial color="#7B2FBE" wireframe transparent opacity={0.18} />

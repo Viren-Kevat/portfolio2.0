@@ -12,7 +12,7 @@ import Contact from './components/Contact/Contact'
 function App() {
   return (
     <>
-      {/* CustomCursor sits outside SmoothScroll — it's fixed position */}
+      {/* CustomCursor sits outside SmoothScroll - it's fixed position */}
       <CustomCursor />
 
       <SmoothScroll>

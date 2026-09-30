@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 
 // Generates real pixel-level noise on a canvas
 // Use inside any section with position: relative
-// position: absolute — contained to parent section only
+// position: absolute - contained to parent section only
 const NoiseOverlay = () => {
     const canvasRef = useRef(null)
 

@@ -121,7 +121,7 @@ const Hero = () => {
                     onMouseLeave={() => setCursorType('default')}
                 >
                     I believe great software
-                    needs both technical depth and creative vision — and I'm building both.
+                    needs both technical depth and creative vision - and I'm building both.
                 </motion.p>
 
                 <motion.div

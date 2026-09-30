@@ -10,7 +10,7 @@ const SmoothScroll = ({ children }) => {
     // wake up Render backend on page load
     useEffect(() => {
         fetch(import.meta.env.VITE_API_URL)
-            .catch(() => { }) // silent — just waking it up
+            .catch(() => { }) // silent - just waking it up
     }, [])
     useEffect(() => {
         const lenis = new Lenis({

@@ -1,4 +1,4 @@
-# VIREN KEVAT — PORTFOLIO 2026 — MASTER CONTEXT PROMPT
+# VIREN KEVAT - PORTFOLIO 2026 - MASTER CONTEXT PROMPT
 # Paste this at the start of any new chat to resume the project with full context.
 
 ---
@@ -15,7 +15,7 @@
 ---
 
 ## PROJECT OVERVIEW
-Building a **premium dark-theme personal portfolio** for 2026 — inspired by AWWWARDS-level sites.
+Building a **premium dark-theme personal portfolio** for 2026 - inspired by AWWWARDS-level sites.
 Stack: **React 18 + Vite**, SCSS Modules, Three.js, Framer Motion, GSAP + Lenis smooth scroll.
 
 **Project path:** `E:\viren\development\react\portfolio_2026\profile_2026`
@@ -23,7 +23,7 @@ Stack: **React 18 + Vite**, SCSS Modules, Three.js, Framer Motion, GSAP + Lenis 
 
 ---
 
-## DESIGN SYSTEM — NEVER BREAK THESE RULES
+## DESIGN SYSTEM - NEVER BREAK THESE RULES
 
 ### Colors
 ```scss
@@ -39,7 +39,7 @@ $text-muted:    #6b7280
 
 ### Typography
 ```scss
-$font-display: 'Bebas Neue'      // headings — all caps, bold
+$font-display: 'Bebas Neue'      // headings - all caps, bold
 $font-body:    'DM Sans'         // body text
 $font-mono:    'JetBrains Mono'  // code labels, mono accents
 ```
@@ -51,13 +51,13 @@ $space-lg: 1.5rem   $space-xl: 2rem     $space-2xl: 4rem
 ```
 
 ### Rules
-- **ZERO hardcoded values** — always use `$variables`
+- **ZERO hardcoded values** - always use `$variables`
 - Every SCSS file starts with:
   ```scss
   @use '../../styles/variables' as *;
   @use '../../styles/mixins' as *;
   ```
-- `cursor: none` globally — `CustomCursor` handles all cursor rendering
+- `cursor: none` globally - `CustomCursor` handles all cursor rendering
 - `setCursorType('hover')` on interactive elements, `'magnetic'` on buttons, `'text'` on inputs
 - Magnetic buttons wrapped in `<MagneticButton>` component
 - All scroll animations: Lenis → GSAP ScrollTrigger
@@ -69,9 +69,9 @@ $space-lg: 1.5rem   $space-xl: 2rem     $space-2xl: 4rem
 
 ### `App.jsx`
 ```jsx
-<PageTransition />     // purple wipe loader — plays once on load
+<PageTransition />     // purple wipe loader - plays once on load
 <CustomCursor />       // handles cursor globally (cursor: none)
-<NoiseOverlay />       // film grain — position: fixed, opacity 0.03 (REMOVED — now only in Projects section)
+<NoiseOverlay />       // film grain - position: fixed, opacity 0.03 (REMOVED - now only in Projects section)
 <SmoothScroll>         // Lenis wrapper
     <Navbar />
     <Hero id="home" />
@@ -91,7 +91,7 @@ $space-lg: 1.5rem   $space-xl: 2rem     $space-2xl: 4rem
 - Logo: `VIREN.` with purple `V`
 - Nav links: HOME, ABOUT, PROJECTS, BLOG, CONTACT
 - Active link: purple underline
-- CTA: `Hire Me` — purple pill button (MagneticButton)
+- CTA: `Hire Me` - purple pill button (MagneticButton)
 - Smooth scroll to sections on click
 
 ### ✅ Hero
@@ -105,25 +105,25 @@ $space-lg: 1.5rem   $space-xl: 2rem     $space-2xl: 4rem
 - Two-column layout: left = bio text + stats, right = skill visualization
 - Bio: name, role, college, short description
 - Stats: years experience, projects built, etc.
-- **Skill Visualization: `HexSphere`** — 3D geodesic sphere (truncated icosahedron = soccer ball shape)
+- **Skill Visualization: `HexSphere`** - 3D geodesic sphere (truncated icosahedron = soccer ball shape)
   - 20 hexagons + 12 pentagons = 32 tiles
   - Built with `@react-three/fiber` + `@react-three/drei`
   - All tiles dark `#111111` by default
   - Hover → tile glows with purple accent color + skill label turns white
   - Back face labels hidden (dot product check vs camera)
   - Auto-rotates, drag to spin (OrbitControls), touch support
-  - Purple point lights only — matches theme
+  - Purple point lights only - matches theme
   - File: `src/components/About/HexSphere.jsx` + `HexSphere.module.scss`
 
 ### ✅ Projects
-- **Horizontal scroll** — GSAP ScrollTrigger pins section, moves track left
+- **Horizontal scroll** - GSAP ScrollTrigger pins section, moves track left
 - Left column (280px): "WHAT I'VE BUILT" heading, glass bg, purple accent line
 - Track: cards side by side, GSAP `x: -totalWidth` on scroll
 - Cards (420px wide, 72vh tall): project number ghost, year, GitHub/Live links, title, description, tags, "View Project →" CTA
 - End card: "See All Projects" + GitHub link
 - Spacer div at end prevents clipping
 - Mobile (<576px): GSAP skipped, native CSS horizontal swipe, `scroll-snap-type: x mandatory`
-- **NoiseOverlay inside Projects section** — `position: absolute`, `opacity: 0.03`
+- **NoiseOverlay inside Projects section** - `position: absolute`, `opacity: 0.03`
 - Data: `src/data/projects.js`
 - Files: `src/components/Projects/Projects.jsx` + `Projects.module.scss`
 
@@ -151,7 +151,7 @@ $space-lg: 1.5rem   $space-xl: 2rem     $space-2xl: 4rem
 - Files: `src/components/Contact/Contact.jsx` + `Contact.module.scss`
 
 ### ✅ NoiseOverlay
-- Canvas-based real pixel noise (not SVG filter — that didn't work)
+- Canvas-based real pixel noise (not SVG filter - that didn't work)
 - `position: absolute` inside Projects section only
 - `opacity: 0.03`, `mixBlendMode: 'screen'`
 - File: `src/components/ui/NoiseOverlay/NoiseOverlay.jsx`
@@ -163,12 +163,12 @@ $space-lg: 1.5rem   $space-xl: 2rem     $space-2xl: 4rem
 - `// loading portfolio` mono label
 - After 1.8s: overlay wipes upward revealing site (cubic bezier `[0.76, 0, 0.24, 1]`)
 - Component unmounts completely after animation
-- `zIndex: 9999` — above everything
+- `zIndex: 9999` - above everything
 - Files: `src/components/ui/PageTransition/PageTransition.jsx` + `.module.scss`
 
 ---
 
-## BACKEND — FULLY WORKING ✅
+## BACKEND - FULLY WORKING ✅
 
 **Live URL:** `https://email-otrf.onrender.com`
 **Stack:** Node.js + Express + Resend + dotenv + cors
@@ -176,15 +176,15 @@ $space-lg: 1.5rem   $space-xl: 2rem     $space-2xl: 4rem
 **Type:** ES Modules (`"type": "module"` in package.json)
 
 ### Features
-- `POST /contact` — receives `{ name, email, message }`
+- `POST /contact` - receives `{ name, email, message }`
 - Server-side validation: email regex, length limits (name≤100, email≤200, message≤2000)
 - HTML sanitization: strips tags from all inputs
 - Rate limiting: 3 requests per IP per 10 min (Map-based, no package)
 - Health check: `GET /` → `{ status: '✅ Contact API is running' }`
 
 ### Sends TWO emails via Resend:
-1. **Notification to Viren** — branded dark HTML template, "Reply to [sender]" button
-2. **Confirmation to sender** — dark theme matching portfolio:
+1. **Notification to Viren** - branded dark HTML template, "Reply to [sender]" button
+2. **Confirmation to sender** - dark theme matching portfolio:
    - `VIREN.` header with purple V
    - `// message received` badge
    - "GOT YOUR MESSAGE!" heading with purple gradient
@@ -210,13 +210,13 @@ VITE_API_URL=https://email-otrf.onrender.com
 ## PENDING / TODO
 
 ### 🔲 HexSphere Polish (currently in progress)
-- Tiles dark `#111111` default, purple accent on hover — DONE
-- Back face labels hidden — DONE
+- Tiles dark `#111111` default, purple accent on hover - DONE
+- Back face labels hidden - DONE
 - Still needs: label text readable, gap between tiles clean
 - Consider adding skill name as tooltip instead of on-tile text if too cramped
 - File: `src/components/About/HexSphere.jsx`
 
-### 🔲 Contact.jsx — connect real API
+### 🔲 Contact.jsx - connect real API
 Replace the `setTimeout` mock with real fetch:
 ```javascript
 const res = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
@@ -343,9 +343,9 @@ src/
 
 ## RESUME INSTRUCTIONS FOR AI
 When starting a new chat with this prompt:
-1. Read all sections carefully — this is a live project in active development
-2. The HexSphere is the current focus — tiles need polish
+1. Read all sections carefully - this is a live project in active development
+2. The HexSphere is the current focus - tiles need polish
 3. After HexSphere is done: connect Contact API → deploy Vercel → update CORS
 4. Never suggest rewriting completed sections from scratch
 5. Always follow the design system rules (variables, cursor, SCSS imports)
-6. Ask for screenshots when doing UI work — Viren will send them for feedback
+6. Ask for screenshots when doing UI work - Viren will send them for feedback

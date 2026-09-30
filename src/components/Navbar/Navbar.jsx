@@ -15,14 +15,14 @@ const navLinks = [
 ]
 
 const Navbar = () => {
-    // tracks if user scrolled down — changes navbar style
+    // tracks if user scrolled down - changes navbar style
     const [scrolled, setScrolled] = useState(false)
     // tracks mobile menu open/close
     const [menuOpen, setMenuOpen] = useState(false)
     // tracks which section is active
     const [active, setActive] = useState('home')
 
-    // useScroll is a framer-motion hook — gives us scroll progress as a MotionValue
+    // useScroll is a framer-motion hook - gives us scroll progress as a MotionValue
     // MotionValues are like state but don't trigger re-renders on every pixel
     // that's why they're more performant for scroll-based effects
     const { scrollY } = useScroll()
@@ -40,12 +40,12 @@ const Navbar = () => {
             if (window.innerWidth > 768) setMenuOpen(false)
         }
         window.addEventListener('resize', handleResize)
-        // cleanup — removes listener when component unmounts
+        // cleanup - removes listener when component unmounts
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
     // Track active section using IntersectionObserver
-    // This is a powerful Web API — fires when elements enter/leave viewport
+    // This is a powerful Web API - fires when elements enter/leave viewport
     useEffect(() => {
         const sections = navLinks.map(l => l.href.replace('#', ''))
         const observers = []
@@ -70,7 +70,7 @@ const Navbar = () => {
     }, [])
 
     // framer-motion animation variants
-    // variants are reusable animation states — cleaner than inline props
+    // variants are reusable animation states - cleaner than inline props
     const navVariants = {
         hidden: { y: -80, opacity: 0 },
         visible: {
@@ -94,7 +94,7 @@ const Navbar = () => {
         visible: (i) => ({
             opacity: 1,
             y: 0,
-            // staggered delay — each link animates slightly after the previous
+            // staggered delay - each link animates slightly after the previous
             // this is the 'i' custom prop passed below
             transition: { delay: 0.1 + i * 0.07, duration: 0.4 }
         })
@@ -166,7 +166,7 @@ const Navbar = () => {
                     onClick={() => setMenuOpen(prev => !prev)}
                     aria-label="Toggle menu"
                 >
-                    {/* conditional render — show X when open, Menu when closed */}
+                    {/* conditional render - show X when open, Menu when closed */}
                     {menuOpen ? <X size={22} /> : <Menu size={22} />}
                 </button>
 

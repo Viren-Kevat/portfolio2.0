@@ -16,7 +16,7 @@ const ParticleField = () => {
     const supernovaCenter = useRef({ x: 0, y: 0 })
     const { viewport } = useThree()
 
-    // ← ADD THIS — dispose old geometry before creating new one
+    // ← ADD THIS - dispose old geometry before creating new one
     useEffect(() => {
         return () => {
             if (pointsRef.current) {
@@ -32,7 +32,7 @@ const ParticleField = () => {
         const positions = new Float32Array(count * 3)
         const colors = new Float32Array(count * 3)
 
-        // initialize originalPos HERE — not conditionally
+        // initialize originalPos HERE - not conditionally
         originalPos.current = new Float32Array(count * 3)
 
         for (let i = 0; i < count; i++) {
@@ -62,7 +62,7 @@ const ParticleField = () => {
         return { positions, colors }
     }, []) // ← empty deps = only runs ONCE, never regenerates
 
-    // single stable event listener — never recreated
+    // single stable event listener - never recreated
     useEffect(() => {
         const handleMove = (e) => {
             const x = (e.clientX / window.innerWidth) * 2 - 1
@@ -83,7 +83,7 @@ const ParticleField = () => {
 
             lastMousePos.current = { x: e.clientX, y: e.clientY }
 
-            // store in ref — no re-render triggered
+            // store in ref - no re-render triggered
             mouse3D.current.x = x * viewport.width / 2
             mouse3D.current.y = y * viewport.height / 2
 
@@ -181,7 +181,7 @@ const ParticleField = () => {
                 }
             }
 
-            // charging — spiral inward
+            // charging - spiral inward
             if (phase === 1) {
                 const cx = px - center.x
                 const cy = py - center.y
@@ -197,7 +197,7 @@ const ParticleField = () => {
                 cols[iz] = 0.97 - heat * 0.6
             }
 
-            // exploding — blast outward
+            // exploding - blast outward
             if (phase === 2) {
                 const cx = px - center.x
                 const cy = py - center.y
@@ -234,7 +234,7 @@ const ParticleField = () => {
                 <bufferAttribute
                     attach="attributes-position"
                     args={[particles.positions, 3]}
-                    usage={35048} // THREE.DynamicDrawUsage — tells GPU buffer changes frequently
+                    usage={35048} // THREE.DynamicDrawUsage - tells GPU buffer changes frequently
                 />
                 <bufferAttribute
                     attach="attributes-color"

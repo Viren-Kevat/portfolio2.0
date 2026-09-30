@@ -17,5 +17,5 @@ export const CursorProvider = ({ children }) => {
     )
 }
 
-// custom hook — cleaner than importing useContext everywhere
+// custom hook - cleaner than importing useContext everywhere
 export const useCursor = () => useContext(CursorContext)

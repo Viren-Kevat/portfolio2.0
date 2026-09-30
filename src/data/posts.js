@@ -1,5 +1,5 @@
 // src/data/posts.js
-// Blog posts data — add real markdown content later
+// Blog posts data  add real markdown content later
 
 export const posts = [
     {
@@ -7,7 +7,7 @@ export const posts = [
         slug: 'why-i-chose-mern',
         title: 'Why I Chose the MERN Stack as a Beginner',
         excerpt:
-            'Everyone told me to start simple. I started with MongoDB, Express, React, and Node instead — and it was the best chaotic decision I ever made.',
+            'Everyone told me to start simple. I started with MongoDB, Express, React, and Node instead  and it was the best chaotic decision I ever made.',
         category: 'Dev Journey',
         tags: ['MERN', 'React', 'Node.js', 'Beginners'],
         date: 'Jan 12, 2025',
@@ -17,9 +17,9 @@ export const posts = [
     {
         id: '02',
         slug: 'css-vs-scss-in-real-projects',
-        title: 'CSS vs SCSS — What I Learned Building Real Projects',
+        title: 'CSS vs SCSS  What I Learned Building Real Projects',
         excerpt:
-            'Variables, mixins, nesting — SCSS sounds like overkill until you\'re maintaining 3000 lines of styles and need to change one color token globally.',
+            'Variables, mixins, nesting  SCSS sounds like overkill until you\'re maintaining 3000 lines of styles and need to change one color token globally.',
         category: 'Styling',
         tags: ['SCSS', 'CSS', 'Frontend'],
         date: 'Feb 3, 2025',
@@ -31,7 +31,7 @@ export const posts = [
         slug: 'jwt-auth-from-scratch',
         title: 'Building JWT Auth from Scratch in Express',
         excerpt:
-            'Tokens, refresh flows, middleware — no library magic, just raw Express and a deep understanding of how authentication actually works.',
+            'Tokens, refresh flows, middleware  no library magic, just raw Express and a deep understanding of how authentication actually works.',
         category: 'Backend',
         tags: ['JWT', 'Express.js', 'Node.js', 'Auth'],
         date: 'Mar 15, 2025',
@@ -53,9 +53,9 @@ export const posts = [
     {
         id: '05',
         slug: 'vibe-coding-is-not-wrong',
-        title: 'Vibe Coding Isn\'t Wrong — If You Actually Understand the Codebase',
+        title: 'Vibe Coding Isn\'t Wrong  If You Actually Understand the Codebase',
         excerpt:
-            'Everyone\'s hating on vibe coding like it\'s some crime. But when you genuinely understand the architecture, the patterns, and the why behind every line — coding by instinct isn\'t reckless, it\'s earned.',
+            'Everyone\'s hating on vibe coding like it\'s some crime. But when you genuinely understand the architecture, the patterns, and the why behind every line  coding by instinct isn\'t reckless, it\'s earned.',
         category: 'Dev Culture',
         tags: ['Vibe Coding', 'Developer Mindset', 'Productivity'],
         date: 'Apr 18, 2026',
@@ -67,7 +67,7 @@ export const posts = [
         slug: 'adaptation-is-the-key',
         title: 'Adaptation Is the Key to Surviving the New World of Tech',
         excerpt:
-            'The tools change every six months. The frameworks die and resurrect. The only developers who thrive aren\'t the ones who memorise syntax — they\'re the ones who adapt without losing their core.',
+            'The tools change every six months. The frameworks die and resurrect. The only developers who thrive aren\'t the ones who memorise syntax  they\'re the ones who adapt without losing their core.',
         category: 'Mindset',
         tags: ['Adaptation', 'Tech Industry', 'Growth', 'Career'],
         date: 'Jun 5, 2026',
@@ -77,7 +77,7 @@ export const posts = [
     {
         id: '07',
         slug: 'why-i-dont-fear-ai',
-        title: 'I Don\'t Fear AI — Because I Know the Fundamentals',
+        title: 'I Don\'t Fear AI  Because I Know the Fundamentals',
         excerpt:
             'AI can autocomplete your code. It can scaffold your project. But it can\'t replace the developer who knows why a hash map is O(1), when to normalize a database, or how the event loop actually works.',
         category: 'Opinion',

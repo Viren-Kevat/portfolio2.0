@@ -13,7 +13,7 @@ const CustomCursor = () => {
         const ring = cursorRingRef.current
 
         // dot follows cursor instantly
-        // ring follows with lag — creates depth
+        // ring follows with lag - creates depth
         const handleMove = (e) => {
             gsap.to(dot, {
                 x: e.clientX,

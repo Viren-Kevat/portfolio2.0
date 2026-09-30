@@ -19,7 +19,7 @@ const BlogCard = ({ post, index }) => {
         <motion.article
             ref={ref}
             className={`${styles.card} ${post.featured ? styles.cardFeatured : ''}`}
-            // staggered reveal — each card delays by its index
+            // staggered reveal - each card delays by its index
             initial={{ opacity: 0, y: 60 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: index * 0.1, ease: [0.4, 0, 0.2, 1] }}
@@ -31,7 +31,7 @@ const BlogCard = ({ post, index }) => {
                 <span className={styles.featuredBadge}>Featured</span>
             )}
 
-            {/* card top row — category + arrow icon */}
+            {/* card top row - category + arrow icon */}
             <div className={styles.cardTop}>
                 <span className={styles.category}>
                     <Tag size={10} />
@@ -46,7 +46,7 @@ const BlogCard = ({ post, index }) => {
                 </motion.div>
             </div>
 
-            {/* post number — ghost text behind */}
+            {/* post number - ghost text behind */}
             <span className={styles.postNum}>{post.id}</span>
 
             {/* title + excerpt */}
@@ -62,7 +62,7 @@ const BlogCard = ({ post, index }) => {
                 ))}
             </div>
 
-            {/* bottom meta — date + read time */}
+            {/* bottom meta - date + read time */}
             <div className={styles.cardMeta}>
                 <span className={styles.date}>{post.date}</span>
                 <span className={styles.readTime}>
@@ -123,7 +123,7 @@ const Blog = () => {
                         <span className={styles.headingAccent}>WRITTEN</span>
                     </motion.h2>
 
-                    {/* right side — subtext + post count */}
+                    {/* right side - subtext + post count */}
                     <motion.div
                         className={styles.headingMeta}
                         initial={{ opacity: 0, x: 30 }}
