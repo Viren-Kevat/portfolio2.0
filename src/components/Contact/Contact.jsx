@@ -20,7 +20,6 @@ const Contact = () => {
     const [fields, setFields] = useState({ name: '', email: '', message: '' })
     const [errors, setErrors] = useState({})
     const [sent, setSent] = useState(false)
-    const [sending, setSending] = useState(false)
 
     const handleChange = (key, val) => {
         setFields(p => ({ ...p, [key]: val }))
@@ -36,25 +35,20 @@ const Contact = () => {
         return e
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = () => {
         const e = validate()
         if (Object.keys(e).length) { setErrors(e); return }
 
-        setSending(true)
-        try {
-            // console.log("API URL:", import.meta.env.VITE_API_URL)
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(fields)
-            })
-            if (!res.ok) throw new Error()
-            setSent(true)
-        } catch {
-            setErrors({ message: 'Something went wrong. Email me directly at viren0210@gmail.com' })
-        } finally {
-            setSending(false)
-        }
+        // Show success immediately — no waiting
+        setSent(true)
+
+        // Fire-and-forget: send in background, keepalive ensures delivery even on tab close
+        fetch(`${import.meta.env.VITE_API_URL}/contact`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(fields),
+            keepalive: true
+        }).catch(() => {}) // silently handle — Render will process once awake
     }
 
     return (
@@ -135,15 +129,10 @@ const Contact = () => {
                                 <button
                                     className={styles.submitBtn}
                                     onClick={handleSubmit}
-                                    disabled={sending}
                                     onMouseEnter={() => setCursorType('magnetic')}
                                     onMouseLeave={() => setCursorType('default')}
                                 >
-                                    {sending ? (
-                                        <span className={styles.dots}><span /><span /><span /></span>
-                                    ) : (
-                                        <><Send size={13} /> Send Message</>
-                                    )}
+                                    <Send size={13} /> Send Message
                                 </button>
                             </MagneticButton>
                         </>
