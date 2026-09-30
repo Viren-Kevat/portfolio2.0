@@ -143,7 +143,7 @@ const About = () => {
                         <div className={styles.photoFrame}>
                             {/* swap src to your actual image path once ready */}
                             <img
-                                src="/assets/images/viren.jpg"
+                                src="/assets/images/viren-kevat.png"
                                 alt="Viren Kevat"
                                 className={styles.photo}
                                 onError={(e) => {
@@ -212,7 +212,7 @@ const About = () => {
                         {/* Resume Button */}
                         <MagneticButton>
                             <a
-                                href="https://drive.google.com/uc?export=download&id=1chCR6E3cOeYzt8acD9wMR88Y8LKtvxMs"
+                                href="https://drive.google.com/uc?export=download&id=1YJ0Nc7B72-MFQ_JWBR1gHhyflFsymIfb"
                                 download
                                 className={styles.resumeBtn}
                                 onMouseEnter={() => setCursorType('magnetic')}
