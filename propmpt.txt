@@ -146,7 +146,7 @@ $space-lg: 1.5rem   $space-xl: 2rem     $space-2xl: 4rem
 - Success state: CheckCircle + "Message sent!" + "I'll reply within 24h."
 - Error state: inline error message with backend fallback
 - 4 social icon buttons below card
-- Footer: © 2025 | Back to top ↑
+- Footer: © 2026 | Back to top ↑
 - **Connected to live backend API**
 - Files: `src/components/Contact/Contact.jsx` + `Contact.module.scss`
 

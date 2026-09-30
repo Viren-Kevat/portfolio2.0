@@ -176,7 +176,7 @@ const Contact = () => {
                     </div>
 
                     <div className={styles.footer}>
-                        <span className={styles.copy}>© 2025 Viren Kevat</span>
+                        <span className={styles.copy}>© 2026 Viren Kevat</span>
                         <button
                             className={styles.backTop}
                             onClick={() => window.lenis?.scrollTo(0)}
