@@ -212,7 +212,7 @@ const About = () => {
                         {/* Resume Button */}
                         <MagneticButton>
                             <a
-                                href="https://drive.google.com/uc?export=download&id=1YJ0Nc7B72-MFQ_JWBR1gHhyflFsymIfb"
+                                href="https://drive.google.com/uc?export=download&id=1G89KE_CIJaTY9OvrTAx8yWsf5FR8AYng"
                                 download
                                 className={styles.resumeBtn}
                                 onMouseEnter={() => setCursorType('magnetic')}

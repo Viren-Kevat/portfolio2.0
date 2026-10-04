@@ -171,7 +171,7 @@
     position: relative;
     @include glass;
     border-radius: $radius-lg;
-    padding: $space-xl;
+    padding: clamp(24px, 3vw, 40px);
     display: flex;
     flex-direction: column;
     gap: $space-md;
